@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Fragment } from 'react';
+import classes from './components/Layout/HeaderButton.module.css'
+import Header from './components/Layout/Header';
+import SectionOne from './components/Layout/SectionOne';
+import SectionTwo from './components/Layout/SectionTwo';
+import SectionThree from './components/Layout/SectionThree';
+import SectionFour from './components/Layout/SectionFour';
+import FooterButton from './components/Layout/FooterButton'
+import {useState, useEffect} from 'react';
 
 function App() {
+  const [isScrolling, setIsScrolling] = useState(false);
+  
+
+  const onScrollHandler = () =>{
+   
+    if(window.scrollY>=750){
+      setIsScrolling(true)
+    }else{
+      setIsScrolling(false)
+    }
+
+}
+
+
+
+    window.addEventListener('scroll', onScrollHandler)
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+        <Header/>
+        <SectionOne/>
+        <SectionTwo/>
+        <SectionThree/>
+        <SectionFour/>
+       {isScrolling&&<FooterButton/>}
+    </Fragment>
   );
 }
 
